@@ -1,0 +1,20 @@
+{
+  lib,
+  rustPlatform,
+}: let
+  cargoToml = builtins.fromTOML (builtins.readFile ./Cargo.toml);
+in
+  rustPlatform.buildRustPackage (finalAttrs: {
+    pname = cargoToml.package.name;
+    inherit (cargoToml.package) version;
+
+    cargoLock = {
+      lockFile = ./Cargo.lock;
+    };
+
+    src = lib.sourceFilesBySuffices ./. [
+      ".rs"
+      ".toml"
+      ".lock"
+    ];
+  })
