@@ -10,6 +10,9 @@ in
 
     cargoLock = {
       lockFile = ./Cargo.lock;
+      outputHashes = {
+        "fuser-0.17.0" = "sha256-X0gmp37Lw17OsR0G1NYaVtEs+zSbUPt+iLPJgDoO7Zw=";
+      };
     };
 
     src = lib.sourceFilesBySuffices ./. [
